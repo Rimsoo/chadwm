@@ -75,14 +75,14 @@
 | `MODKEY\|ControlMask` | `XK_g` | `setlayout` | `{.v = &layouts[10]}` |
 | `MODKEY\|ControlMask\|ShiftMask` | `XK_t` | `setlayout` | `{.v = &layouts[13]}` |
 | `MODKEY` | `XK_space` | `setlayout` | `{0}` |
-| `MODKEY\|ControlMask` | `XK_comma` | `cyclelayout` | `{.i = -1 }` |
-| `MODKEY\|ControlMask` | `XK_period` | `cyclelayout` | `{.i = +1 }` |
+| `MODKEY\|ControlMask` | `XK_Left` | `cyclelayout` | `{.i = -1 }` |
+| `MODKEY\|ControlMask` | `XK_Right` | `cyclelayout` | `{.i = +1 }` |
 | `MODKEY` | `XK_0` | `view` | `{.ui = ~0 }` |
 | `MODKEY\|ShiftMask` | `XK_0` | `tag` | `{.ui = ~0 }` |
 | `MODKEY` | `XK_comma` | `focusmon` | `{.i = -1 }` |
 | `MODKEY` | `XK_period` | `focusmon` | `{.i = +1 }` |
-| `MODKEY\|ShiftMask` | `XK_comma` | `tagmon` | `{.i = -1 }` |
-| `MODKEY\|ShiftMask` | `XK_period` | `tagmon` | `{.i = +1 }` |
+| `MODKEY\|ShiftMask` | `XK_Left` | `tagmon` | `{.i = -1 }` |
+| `MODKEY\|ShiftMask` | `XK_Right` | `tagmon` | `{.i = +1 }` |
 | `MODKEY\|ShiftMask` | `XK_minus` | `setborderpx` | `{.i = -1 }` |
 | `MODKEY\|ShiftMask` | `XK_p` | `setborderpx` | `{.i = +1 }` |
 | `MODKEY\|ShiftMask` | `XK_w` | `setborderpx` | `{.i = default_border }` |
