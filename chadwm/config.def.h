@@ -67,13 +67,15 @@ static const char *colors[][3]      = {
 static char *tags[] = {"", "", "", "", ""};
 
 static const char* eww[] = { "eww", "open" , "eww", NULL };
-static const char* rofi[] = { "rofi", "-show" , "drun", NULL };
+static const char* rofi[] = { "rofi", "-show" , "run", NULL };
+static const char* drofi[] = { "rofi", "-show" , "drun", NULL };
+static const char* wrofi[] = { "rofi", "-show" , "window", NULL };
 static const char* firefox[] = { "firefox", NULL };
 
 static const Launcher launchers[] = {
     /* command     name to display */
-    { rofi,         "󰀻" },
-    { eww,          "" },
+    { drofi,         "󰀻" },
+   // { eww,          "" },
     { firefox,      "󰈹" },
 };
 
@@ -154,6 +156,7 @@ static const Key keys[] = {
     { 0,              XK_F1,            spawn,    {.v = helpCmd}},
 
 
+    { MODKEY,                           XK_Tab,       spawn,          {.v = wrofi }},
     { MODKEY,                           XK_a,       spawn,          {.v = rofi }},
     { MODKEY,                           XK_Return,  spawn,         {.v = terminal}},
 

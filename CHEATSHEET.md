@@ -30,6 +30,7 @@
 | `0` | `XF86XK_MonBrightnessDown` | `spawn` | `{.v = light_down}` |
 | `0` | `XK_Print` | `spawn` | `SHCMD("flameshot gui")` |
 | `0` | `XK_F1` | `spawn` | `{.v = helpCmd}` |
+| `MODKEY` | `XK_Tab` | `spawn` | `{.v = wrofi }` |
 | `MODKEY` | `XK_a` | `spawn` | `{.v = rofi }` |
 | `MODKEY` | `XK_Return` | `spawn` | `{.v = terminal}` |
 | `MODKEY` | `XK_b` | `togglebar` | `{0}` |

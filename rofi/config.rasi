@@ -10,6 +10,8 @@ configuration{
     disable-history: false;
     hide-scrollbar: true;
     display-drun: "   Apps ";
+    display-window: "   Window ";
+    display-run: "   Run ";
 }
 
 @theme "themes/gruv"
