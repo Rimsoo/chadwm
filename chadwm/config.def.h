@@ -26,21 +26,23 @@ static const int vertpadtab         = 35;
 static const int horizpadtabi       = 15;
 static const int horizpadtabo       = 15;
 static const int scalepreview       = 4;
-static const int tag_preview        = 0;        /* 1 means enable, 0 is off */
+static const int tag_preview        = 1;        /* 1 means enable, 0 is off */
 static const int colorfultag        = 1;        /* 0 means use SchemeSel for selected non vacant tag */
 static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",     NULL };
 static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL };
 static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL };
 static const char *light_up[] = {"/usr/bin/light", "-A", "5", NULL};
 static const char *light_down[] = {"/usr/bin/light", "-U", "5", NULL};
+static const char *terminal[] = { "kitty", NULL };
+static const char *helpCmd[] = {"chadwm-help", NULL};
 static const int new_window_attach_on_end = 0; /*  1 means the new window will attach on the end; 0 means the new window will attach on the front,default is front */
 #define ICONSIZE 19   /* icon size */
 #define ICONSPACING 8 /* space between icon and title */
 
-static const char *fonts[]          = {"Iosevka:style:medium:size=12" ,"JetBrainsMono Nerd Font Mono:style:medium:size=19" };
+static const char *fonts[]          = {"Iosevka:style:medium:size=12" ,"JetBrainsMono Nerd Font:style:Medium:size=19" };
 
 // theme
-#include "themes/onedark.h"
+#include "themes/gruvchad.h"
 
 static const char *colors[][3]      = {
     /*                     fg       bg      border */
@@ -137,20 +139,19 @@ static const Key keys[] = {
     /* modifier                         key         function        argument */
 
     // brightness and audio 
-    {0,             XF86XK_AudioLowerVolume,    spawn, {.v = downvol}},
-	{0,             XF86XK_AudioMute, spawn,    {.v = mutevol }},
-	{0,             XF86XK_AudioRaiseVolume,    spawn, {.v = upvol}},
-	{0,				XF86XK_MonBrightnessUp,     spawn,	{.v = light_up}},
-	{0,				XF86XK_MonBrightnessDown,   spawn,	{.v = light_down}},
+    { 0,             XF86XK_AudioLowerVolume,    spawn, {.v = downvol}},
+	  { 0,             XF86XK_AudioMute, spawn,    {.v = mutevol }},
+	  { 0,             XF86XK_AudioRaiseVolume,    spawn, {.v = upvol}},
+	  { 0,             XF86XK_MonBrightnessUp,     spawn,	{.v = light_up}},
+	  { 0,             XF86XK_MonBrightnessDown,   spawn,	{.v = light_down}},
 
-    // screenshot fullscreen and cropped
-    {MODKEY|ControlMask,                XK_u,       spawn,
-        SHCMD("maim | xclip -selection clipboard -t image/png")},
-    {MODKEY,                            XK_u,       spawn,
-        SHCMD("maim --select | xclip -selection clipboard -t image/png")},
+    // screenshot & help
+    { 0,             XK_Print,       spawn,       SHCMD("flameshot gui")},
+    { 0,              XK_F1,            spawn,    {.v = helpCmd}},
+
 
     { MODKEY,                           XK_c,       spawn,          SHCMD("rofi -show drun") },
-    { MODKEY,                           XK_Return,  spawn,          SHCMD("st")},
+    { MODKEY,                           XK_Return,  spawn,         {.v = terminal}},
 
     // toggle stuff
     { MODKEY,                           XK_b,       togglebar,      {0} },
@@ -257,7 +258,7 @@ static const Button buttons[] = {
     { ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
     { ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
     { ClkWinTitle,          0,              Button2,        zoom,           {0} },
-    { ClkStatusText,        0,              Button2,        spawn,          SHCMD("st") },
+    { ClkStatusText,        0,              Button2,        spawn,          {.v = terminal}},
 
     /* Keep movemouse? */
     /* { ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} }, */

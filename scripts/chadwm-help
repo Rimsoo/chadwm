@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Vérifier si un processus "chadwm-help" tourne avant de le tuer
+pkill -f '.*nvim.*--headless.*CHEATSHEET.md' 2>/dev/null || true
+
+# Lancer Neovim avec MarkdownPreview
+nvim --headless ~/.config/chadwm/CHEATSHEET.md -c 'MarkdownPreview'
+
+#end

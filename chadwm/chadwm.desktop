@@ -1,0 +1,7 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=ChaDwm
+Comment=Dynamic window manager
+Exec=chadwm-start
+Icon=dwm
+Type=XSession

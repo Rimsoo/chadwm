@@ -12,7 +12,7 @@ configuration{
     display-drun: "   Apps ";
 }
 
-@theme "everblush"
+@theme "themes/gruv"
 
 element-text, element-icon , mode-switcher {
     background-color: inherit;
