@@ -156,9 +156,10 @@ static const Key keys[] = {
     { 0,              XK_F1,            spawn,    {.v = helpCmd}},
 
 
-    { MODKEY,                           XK_Tab,       spawn,          {.v = wrofi }},
-    { MODKEY,                           XK_a,       spawn,          {.v = rofi }},
-    { MODKEY,                           XK_Return,  spawn,         {.v = terminal}},
+    { MODKEY,                           XK_Tab,     spawn,          {.v = wrofi }},
+    { MODKEY,                           XK_a,       spawn,          {.v = drofi }},
+    { MODKEY,                           XK_r,       spawn,          {.v = rofi }},
+    { MODKEY,                           XK_Return,  spawn,          {.v = terminal}},
 
     // toggle stuff
     { MODKEY,                           XK_b,       togglebar,      {0} },
