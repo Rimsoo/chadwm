@@ -67,10 +67,14 @@ static const char *colors[][3]      = {
 static char *tags[] = {"", "", "", "", ""};
 
 static const char* eww[] = { "eww", "open" , "eww", NULL };
+static const char* rofi[] = { "rofi", "-show" , "drun", NULL };
+static const char* firefox[] = { "firefox", NULL };
 
 static const Launcher launchers[] = {
     /* command     name to display */
-    { eww,         "" },
+    { rofi,         "󰀻" },
+    { eww,          "" },
+    { firefox,      "󰈹" },
 };
 
 static const int tagschemes[] = {
@@ -150,7 +154,7 @@ static const Key keys[] = {
     { 0,              XK_F1,            spawn,    {.v = helpCmd}},
 
 
-    { MODKEY,                           XK_c,       spawn,          SHCMD("rofi -show drun") },
+    { MODKEY,                           XK_a,       spawn,          {.v = rofi }},
     { MODKEY,                           XK_Return,  spawn,         {.v = terminal}},
 
     // toggle stuff

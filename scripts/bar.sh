@@ -20,7 +20,9 @@ updates() {
   # updates=$({ timeout 20 checkupdates 2>/dev/null || true; } | wc -l) # arch
   updates=$({ timeout 20 aptitude search '~U' 2>/dev/null || true; } | wc -l) # apt (ubuntu, debian etc)
 
-  if [ -z "$updates" ]; then
+  updates=$(echo "$updates" | tr -d '[:space:]')
+
+  if [[ $updates = "0" ]]; then
     printf "    ^c$green^  "
   else
     printf "    ^c$green^ ^b$black^     $updates"

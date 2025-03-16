@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/bin/sh
 
 cp -r eww rofi ~/.config
 # cp -r rofi ~/.config
-cp .Xresources ~/
+cp .Xresources .xprofile ~/
 chmod +x scripts/run.sh scripts/chadwm-help || exit 1
 sudo cp scripts/run.sh /usr/local/bin/chadwm-start || exit 1
 sudo cp scripts/chadwm-help /usr/local/bin/chadwm-help || exit 1
