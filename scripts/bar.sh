@@ -59,8 +59,8 @@ eth() {
 }
 
 clock() {
-  printf "^c$black^ ^b$darkblue^ 󱑆 "
-  printf "^c$black^^b$blue^ $(date '+%d %h %H:%M')  "
+  printf "^c$darkblue^ ^b$darkblue^^r0,-50,150,100^ ^c$black^ 󱑆 "
+  printf "^c$black^ ^b$darkblue^ $(date '+%d %h %H:%M')  "
 }
 
 weather() {
