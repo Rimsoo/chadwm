@@ -1,4 +1,7 @@
-# chadwm (Initial look)
+# chadwm - My version
+<img src="https://github.com/Rimsoo/chadwm/blob/main/preview.png">
+
+# chadwm - Initial look
 
 <img src="https://github.com/siduck/chadwm/blob/screenshots/screenshots/initial_look.png">
 <img src="https://github.com/siduck/chadwm/blob/screenshots/screenshots/col_layout.png">
