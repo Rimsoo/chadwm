@@ -3,9 +3,9 @@
     bg-col-light: #26292a;
     border-col: #282b2c;
     selected-col: #242728;
-    blue: #8dae88;
+    blue: #9fa540;
     fg-col: #d4be98;
-    fg-col2: #df736d;
+    fg-col2: #ff7f2a;
     grey: #5b5e5f;
     width: 600;
 }

@@ -1478,14 +1478,14 @@ void drawbar(Monitor *m) {
     XFillRectangle(drw->dpy, drw->drawable, drw->gc, 0, 0, m->ww, bh);
   }
 
-  if (showsystray && m == systraytomon(m))
+  if (showsystray && 1 || m == systraytomon(m))
     stw = getsystraywidth();
 
   if (!m->showbar)
    		return;
 
   /* draw status first so it can be overdrawn by tags later */
-  if (m == selmon) { /* status is only drawn on selected monitor */
+  if (m == selmon || 1) { /* status is only drawn on selected monitor */
     sw = mw - drawstatusbar(m, bh_n, stext);
   }
 
@@ -2532,7 +2532,7 @@ void resize(Client *c, int x, int y, int w, int h, int interact) {
 
 void resizebarwin(Monitor *m) {
   unsigned int w =floatbar? m->ww - 2 * m->gappov:m->ww;
-  if (showsystray && m == systraytomon(m))
+  if (showsystray && 1 || m == systraytomon(m))
     w -= getsystraywidth();
   if(floatbar){
     XMoveResizeWindow(dpy, m->barwin, m->wx + m->gappov, m->by, w, bh);
@@ -3310,7 +3310,7 @@ void updatebars(void) {
     if (m->barwin)
       continue;
     w = m->ww;
-    if (showsystray && m == systraytomon(m))
+    if (showsystray && 1 || m == systraytomon(m))
       w -= getsystraywidth();
     m->barwin = XCreateWindow(
         dpy, root, m->wx + m->gappov, m->by, w - 2 * m->gappov, bh, 0,
@@ -3542,7 +3542,7 @@ void updatesizehints(Client *c) {
 void updatestatus(void) {
   if (!gettextprop(root, XA_WM_NAME, stext, sizeof(stext)))
     strcpy(stext, "dwm-" VERSION);
-  drawbar(selmon);
+  drawbars();
   updatesystray();
 }
 
