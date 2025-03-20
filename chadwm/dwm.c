@@ -218,9 +218,17 @@ typedef struct {
   int monitor;
 } Rule;
 
+typedef struct SecondaryTray SecondaryTray;
+struct SecondaryTray {
+    Window win;
+    Monitor *mon;
+    SecondaryTray *next;
+};
+
 typedef struct Systray Systray;
 struct Systray {
   Window win;
+  SecondaryTray *secondary_trays; 
   Client *icons;
 };
 
@@ -344,6 +352,7 @@ static void updatepreview(void);
 static void updateclientlist(void);
 static int updategeom(void);
 static void updatenumlockmask(void);
+static void updateothersystray(void);
 static void updatesizehints(Client *c);
 static void updatestatus(void);
 static void updatesystray(void);
@@ -3598,7 +3607,7 @@ void updatesystray(void) {
   XWindowChanges wc;
   Client *i;
   Monitor *m = systraytomon(NULL);
-  unsigned int x = floatbar?m->mx + m->mw - m->gappov:m->mx + m->mw;
+  unsigned int x = floatbar ? m->mx + m->mw - m->gappov : m->mx + m->mw;
   unsigned int w = 1;
 
   if (!showsystray)
@@ -3661,6 +3670,77 @@ void updatesystray(void) {
   XSetForeground(dpy, drw->gc, scheme[SchemeNorm][ColBg].pixel);
   XFillRectangle(dpy, systray->win, drw->gc, 0, 0, w, bh);
   XSync(dpy, False);
+  updateothersystray();
+}
+
+void updateothersystray(void) {
+    static int delay = 0;
+    XSetWindowAttributes wa;
+    XWindowChanges wc;
+    Client *i;
+    Monitor *active_mon = systraytomon(NULL);
+    unsigned int w_total = 0;
+
+    if (!showsystray || !systray) return;
+
+    // Calculer la largeur totale des icônes
+    for (i = systray->icons; i; i = i->next)
+        w_total += i->w + systrayspacing;
+    w_total = w_total ? w_total - systrayspacing : 1;
+
+    // Mettre à jour toutes les copies secondaires
+    for (Monitor *m = mons; m; m = m->next) {
+        if (m == active_mon) continue;
+
+        SecondaryTray *st;
+        for (st = systray->secondary_trays; st; st = st->next)
+            if (st->mon == m) break;
+
+        if (!st) {
+            // Créer une nouvelle copie
+            st = (SecondaryTray*)calloc(1, sizeof(SecondaryTray));
+            st->mon = m;
+            st->win = XCreateSimpleWindow(dpy, root, 0, 0, w_total, bh, 0, 0,
+                                        scheme[SchemeNorm][ColBg].pixel);
+            wa.override_redirect = True;
+            wa.background_pixel = scheme[SchemeNorm][ColBg].pixel;
+            XChangeWindowAttributes(dpy, st->win, CWOverrideRedirect | CWBackPixel, &wa);
+            XMapRaised(dpy, st->win);
+            st->next = systray->secondary_trays;
+            systray->secondary_trays = st;
+        }
+
+        // Positionnement dynamique
+        int x_pos = floatbar ? m->mx + m->mw - m->gappov - w_total : m->mx + m->mw - w_total;
+        XMoveResizeWindow(dpy, st->win, x_pos, m->by, w_total, bh);
+
+        // Copie graphique instantanée
+        XClearWindow(dpy, st->win);
+        int icon_x = 0;
+        for (i = systray->icons; i; i = i->next) {
+            XCopyArea(dpy, i->win, st->win, drw->gc,
+                    0, 0, i->w, i->h,
+                    icon_x, vertpadbar/2);
+            icon_x += i->w + systrayspacing;
+        }
+    }
+
+    // Nettoyer les copies pour les écrans supprimés
+    SecondaryTray **prev = &systray->secondary_trays;
+    while (*prev) {
+        SecondaryTray *current = *prev;
+        Monitor *m;
+        for (m = mons; m; m = m->next)
+            if (m == current->mon) break;
+        
+        if (!m || current->mon == active_mon) {
+            XDestroyWindow(dpy, current->win);
+            *prev = current->next;
+            free(current);
+        } else {
+            prev = &current->next;
+        }
+    }
 }
 
 void updatetitle(Client *c) {
