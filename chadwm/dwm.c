@@ -375,6 +375,7 @@ static void zoom(const Arg *arg);
 static Systray *systray = NULL;
 static const char broken[] = "broken";
 static char stext[1024];
+static int stextw = 0;
 static int screen;
 static int sw, sh;      /* X display screen geometry width, height */
 static int bh;          /* bar height */
@@ -659,7 +660,7 @@ void buttonpress(XEvent *e) {
 			}
 	}
 
-  if (ev->x > selmon->ww - (int)TEXTW(stext))
+  if (ev->x > selmon->ww - stextw)
          click = ClkStatusText;
   else
          click = ClkWinTitle;
@@ -1089,6 +1090,7 @@ int drawstatusbar(Monitor *m, int bh, char *stext) {
   text = p;
 
   w += horizpadbar;
+  stextw = w + getsystraywidth();
   if(floatbar){
     ret = x = m->ww - m->gappov * 2 - borderpx - w;
     x = m->ww - m->gappov * 2 - borderpx - w - getsystraywidth();
