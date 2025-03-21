@@ -71,6 +71,7 @@ static const char* rofi[] = { "rofi", "-show" , "run", NULL };
 static const char* drofi[] = { "rofi", "-show" , "drun", NULL };
 static const char* wrofi[] = { "rofi", "-show" , "window", NULL };
 static const char* firefox[] = { "firefox", NULL };
+static const char* status_menu[] = {"chadwm-status-menu", NULL};
 
 static const Launcher launchers[] = {
     /* command     name to display */
@@ -97,6 +98,8 @@ static const Rule rules[] = {
     { "Gimp",     NULL,       NULL,       0,            0,           1,           -1 },
     { "Firefox",  NULL,       NULL,       1 << 8,       0,           0,           -1 },
     { "eww",      NULL,       NULL,       0,            0,           1,           -1 },
+    { "zenity",   NULL,       NULL,       0,            0,           1,           -1 },
+    { "Yad",      NULL,       NULL,       0,            0,           1,           -1 },
 };
 
 /* layout(s) */
@@ -266,7 +269,12 @@ static const Button buttons[] = {
     { ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
     { ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
     { ClkWinTitle,          0,              Button2,        zoom,           {0} },
+    { ClkWinTitle,          0,              Button4,        spawn,          {.v = upvol}},
+    { ClkWinTitle,          0,              Button5,        spawn,          {.v = downvol}},
     { ClkStatusText,        0,              Button2,        spawn,          {.v = terminal}},
+    { ClkStatusText,        0,              Button1,        spawn,          {.v = status_menu}},
+    { ClkStatusText,        0,              Button4,        spawn,          {.v = upvol}},
+    { ClkStatusText,        0,              Button5,        spawn,          {.v = downvol}},
 
     /* Keep movemouse? */
     /* { ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} }, */

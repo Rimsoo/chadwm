@@ -135,7 +135,12 @@
 | `ClkLtSymbol` | `0` | `Button1` | `setlayout` | `{0}` |
 | `ClkLtSymbol` | `0` | `Button3` | `setlayout` | `{.v = &layouts[2]}` |
 | `ClkWinTitle` | `0` | `Button2` | `zoom` | `{0}` |
+| `ClkWinTitle` | `0` | `Button4` | `spawn` | `{.v = upvol}` |
+| `ClkWinTitle` | `0` | `Button5` | `spawn` | `{.v = downvol}` |
 | `ClkStatusText` | `0` | `Button2` | `spawn` | `{.v = terminal}` |
+| `ClkStatusText` | `0` | `Button1` | `spawn` | `{.v = status_menu}` |
+| `ClkStatusText` | `0` | `Button4` | `spawn` | `{.v = upvol}` |
+| `ClkStatusText` | `0` | `Button5` | `spawn` | `{.v = downvol}` |
 | `ClkClientWin` | `MODKEY` | `Button1` | `moveorplace` | `{.i = 0}` |
 | `ClkClientWin` | `MODKEY` | `Button2` | `togglefloating` | `{0}` |
 | `ClkClientWin` | `MODKEY` | `Button3` | `resizemouse` | `{0}` |
