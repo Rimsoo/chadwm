@@ -16,7 +16,7 @@ static const unsigned int systrayspacing = 2;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails,display systray on the 1st monitor,False: display systray on last monitor*/
 static const int showsystray        = 1;        /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
-static const int showtab            = showtab_auto;
+static const int showtab            = 0;
 static const int toptab             = 1;        /* 0 means bottom tab */
 static const int floatbar           = 1;        /* 1 means the bar will float(don't have padding),0 means the bar have padding */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -35,7 +35,7 @@ static const char *light_up[] = {"/usr/bin/light", "-A", "5", NULL};
 static const char *light_down[] = {"/usr/bin/light", "-U", "5", NULL};
 static const char *terminal[] = { "kitty", NULL };
 static const char *helpCmd[] = {"chadwm-help", NULL};
-static const int new_window_attach_on_end = 0; /*  1 means the new window will attach on the end; 0 means the new window will attach on the front,default is front */
+static const int new_window_attach_on_end = 1; /*  1 means the new window will attach on the end; 0 means the new window will attach on the front,default is front */
 #define ICONSIZE 19   /* icon size */
 #define ICONSPACING 8 /* space between icon and title */
 
