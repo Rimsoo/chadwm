@@ -11,8 +11,8 @@ interval=0
 cpu() {
   cpu_val=$(grep -o "^[^ ]*" /proc/loadavg)
 
-  printf "^c$black^ ^b$green^ CPU"
-  printf "^c$white^ ^b$grey^ $cpu_val"
+  printf "^c$black^^b$green^ CPU"
+  printf "^c$white^^b$grey^ $cpu_val"
 }
 
 pkg_updates() {
@@ -35,19 +35,19 @@ battery() {
 }
 
 brightness() {
-  printf "^c$red^ ^b$black^   "
+  printf "^c$red^^b$black^   "
   printf "^c$red^%.0f\n" $(cat /sys/class/backlight/*/brightness)
 }
 
 mem() {
-  printf "^c$blue^^b$black^  "
-  printf "^c$blue^ $(free -h | awk '/^Mem/ { print $3 }' | sed s/i//g)"
+  printf "^c$blue^^b$black^   "
+  printf "^c$blue^$(free -h | awk '/^Mem/ { print $3 }' | sed s/i//g)"
 }
 
 wlan() {
   case "$(cat /sys/class/net/wl*/operstate 2>/dev/null)" in
-  up) printf "^c$black^ ^b$blue^ 󰤨 ^d^%s" " ^c$blue^Connected" ;;
-  down) printf "^c$black^ ^b$blue^ 󰤭 ^d^%s" " ^c$blue^Disconnected" ;;
+  up) printf "^c$black^^b$blue^ 󰤨 ^d^%s" "^c$blue^Connected" ;;
+  down) printf "^c$black^^b$blue^ 󰤭 ^d^%s" "^c$blue^Disconnected" ;;
   esac
 }
 
@@ -59,13 +59,44 @@ eth() {
 }
 
 clock() {
-  printf "^c$darkblue^ ^b$darkblue^^r0,-50,150,100^ ^c$black^ 󱑆 "
-  printf "^c$black^ ^b$darkblue^ $(date '+%d %h %H:%M')  "
+  printf "^c$darkblue^^b$darkblue^^r0,-50,150,100^ ^c$black^ 󱑆 "
+  printf "^c$black^^b$darkblue^ $(date '+%d %h %H:%M')"
 }
 
 weather() {
   get_weather=$(curl -s 'wttr.in/Jumet?format=1')
-  printf "^c$red^$get_weather "
+  printf "^c$red^$get_weather"
+}
+
+volume() {
+  vol=$(pactl get-sink-volume @DEFAULT_SINK@ | awk -F/ '{ print $2 }' | tr -d '[:space:]%')
+  vol=${vol:-0} # Si le volume est vide, définir à 0
+
+  # Calculer la longueur de la barre (par exemple, 10 caractères pour 100%)
+  len=10
+  bar_length=$((vol / len))
+  bar=""
+  ebar=""
+  for i in $(seq 1 $bar_length); do
+    # if [ $i -eq 1 ]; then
+    #   bar="${bar}"
+    # elif [ $i -eq $len ]; then
+    #   bar="${bar}"
+    # else
+    bar="${bar}󰹞"
+    # fi
+  done
+  for j in $(seq $i $len); do
+    # if [ $j -eq 1 ]; then
+    #   ebar="${ebar}"
+    # elif [ $j -eq $len ]; then
+    #   ebar="${ebar}"
+    # else
+    ebar="${ebar}󰹞"
+    # fi
+  done
+
+  printf "^c$green^^b$black^    $bar^c$white^$ebar"
 }
 
 while true; do
@@ -73,5 +104,5 @@ while true; do
   [ $interval = 0 ] || [ $(($interval % 3600)) = 0 ] && updates=$(pkg_updates)
   interval=$((interval + 1))
 
-  sleep 1 && xsetroot -name "      $updates  $(mem)  $(eth)  $(weather)  $(clock)"
+  sleep 1 && xsetroot -name "    $updates  $(volume)  $(mem)  $(eth)  $(weather)  $(clock)"
 done
