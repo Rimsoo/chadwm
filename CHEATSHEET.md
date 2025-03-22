@@ -138,6 +138,7 @@
 | `ClkWinTitle` | `0` | `Button2` | `zoom` | `{0}` |
 | `ClkWinTitle` | `0` | `Button4` | `spawn` | `{.v = upvol}` |
 | `ClkWinTitle` | `0` | `Button5` | `spawn` | `{.v = downvol}` |
+| `ClkWinTitle` | `0` | `Button1` | `focusstack` | `{.i = +1 }` |
 | `ClkStatusText` | `0` | `Button2` | `spawn` | `{.v = terminal}` |
 | `ClkStatusText` | `0` | `Button1` | `spawn` | `{.v = status_menu}` |
 | `ClkStatusText` | `0` | `Button4` | `spawn` | `{.v = upvol}` |
