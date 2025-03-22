@@ -28,9 +28,9 @@
 | `0` | `XF86XK_AudioRaiseVolume` | `spawn` | `{.v = upvol}` |
 | `0` | `XF86XK_MonBrightnessUp` | `spawn` | `{.v = light_up}` |
 | `0` | `XF86XK_MonBrightnessDown` | `spawn` | `{.v = light_down}` |
-| `0` | `XK_Print` | `spawn` | `SHCMD("flameshot gui")` |
 | `0` | `XK_F1` | `spawn` | `{.v = helpCmd}` |
-| `MODKEY` | `XK_Tab` | `spawn` | `{.v = wrofi }` |
+| `0` | `XK_Print` | `spawn` | `SHCMD("flameshot gui")` |
+| `MODKEY\|ShiftMask` | `XK_s` | `spawn` | `SHCMD("flameshot gui")` |
 | `MODKEY` | `XK_a` | `spawn` | `{.v = drofi }` |
 | `MODKEY` | `XK_r` | `spawn` | `{.v = rofi }` |
 | `MODKEY` | `XK_Return` | `spawn` | `{.v = terminal}` |

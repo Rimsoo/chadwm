@@ -1,51 +1,69 @@
 #!/bin/bash
 
-# Mode principal
-show_menu() {
-  echo -e "  Power\n  Volume\n Calendar"
-}
-
-# Sous-menu Power
-power_options() {
-  echo -e " Shutdown\n Reboot\n Logout\n⏾ Suspend"
-}
-
-volume() {
-  current_vol=$(pactl get-sink-volume @DEFAULT_SINK@ | grep -oP '\d+(?=%)' | head -n1)
-  selected=$(seq 0 10 100 | rofi -dmenu -p "Volume: $current_vol%")
-
-  if [ -n "$selected" ]; then
-    pactl set-sink-volume @DEFAULT_SINK@ "$selected%"
-  fi
-}
-
 case "$1" in
 "power")
-  action=$(power_options | rofi -dmenu -p "Power")
-  case "$action" in
-  " Shutdown") systemctl poweroff ;;
-  " Reboot") systemctl reboot ;;
-  " Logout") killall dwm || loginctl terminate-user $USER ;;
-  "⏾ Suspend") systemctl suspend ;;
-  esac
+  $HOME/.config/rofi/scripts/powermenu
   ;;
-"volume")
-  # Script de gestion du volume (voir étape 3)
-  volume
+"run")
+  rofi -show run -theme "$HOME/.config/rofi/launchers/type-1/style-3.rasi"
   ;;
-"calendar")
-  # Affichage du calendrier (voir étape 4)
-  rofi -e "$(cal -3)"
+"drun")
+  $HOME/.config/rofi/scripts/launcher
   ;;
 *)
   selection=$(show_menu | rofi -dmenu -p "Menu")
   case "$selection" in
-  "  Power") chadwm-status-menu power ;;
-  "  Volume") chadwm-status-menu volume ;;
-  "  Calendar") chadwm-status-menu calendar ;;
+  "  Rigolo") chadwm-rofis-menus ;;
   esac
   ;;
 esac
+
+# # Mode principal
+# show_menu() {
+#   echo -e "  Power\n  Volume\n Calendar"
+# }
+#
+# # Sous-menu Power
+# power_options() {
+#   echo -e " Shutdown\n Reboot\n Logout\n⏾ Suspend"
+# }
+#
+# volume() {
+#   current_vol=$(pactl get-sink-volume @DEFAULT_SINK@ | grep -oP '\d+(?=%)' | head -n1)
+#   selected=$(seq 0 10 100 | rofi -dmenu -p "Volume: $current_vol%")
+#
+#   if [ -n "$selected" ]; then
+#     pactl set-sink-volume @DEFAULT_SINK@ "$selected%"
+#   fi
+# }
+#
+# case "$1" in
+# "power")
+#   action=$(power_options | rofi -dmenu -p "Power")
+#   case "$action" in
+#   " Shutdown") systemctl poweroff ;;
+#   " Reboot") systemctl reboot ;;
+#   " Logout") killall dwm || loginctl terminate-user $USER ;;
+#   "⏾ Suspend") systemctl suspend ;;
+#   esac
+#   ;;
+# "volume")
+#   # Script de gestion du volume (voir étape 3)
+#   volume
+#   ;;
+# "calendar")
+#   # Affichage du calendrier (voir étape 4)
+#   rofi -e "$(cal -3)"
+#   ;;
+# *)
+#   selection=$(show_menu | rofi -dmenu -p "Menu")
+#   case "$selection" in
+#   "  Power") chadwm-status-menu power ;;
+#   "  Volume") chadwm-status-menu volume ;;
+#   "  Calendar") chadwm-status-menu calendar ;;
+#   esac
+#   ;;
+# esac
 
 # #!/usr/bin/env bash
 #
