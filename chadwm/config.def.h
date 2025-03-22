@@ -157,10 +157,10 @@ static const Key keys[] = {
     { 0,                                XK_F1,      spawn,          {.v = helpCmd}},
     { 0,                                XK_Print,   spawn,          SHCMD("flameshot gui")},
 
-
     { MODKEY|ShiftMask,                 XK_s,       spawn,          SHCMD("flameshot gui") },
     { MODKEY,                           XK_a,       spawn,          {.v = drofi }},
     { MODKEY,                           XK_r,       spawn,          {.v = rofi }},
+    { MODKEY,                           XK_p,       spawn,          {.v = status_menu }},
     { MODKEY,                           XK_Return,  spawn,          {.v = terminal}},
 
     // toggle stuff
@@ -233,8 +233,8 @@ static const Key keys[] = {
     { MODKEY|ShiftMask,                 XK_Right,  tagmon,          {.i = +1 } },
 
     // change border size
-    { MODKEY|ShiftMask,                 XK_minus,   setborderpx,    {.i = -1 } },
-    { MODKEY|ShiftMask,                 XK_p,       setborderpx,    {.i = +1 } },
+    { MODKEY|ShiftMask,                 XK_KP_Subtract,setborderpx, {.i = -1 } },
+    { MODKEY|ShiftMask,                 XK_KP_Add,  setborderpx,    {.i = +1 } },
     { MODKEY|ShiftMask,                 XK_w,       setborderpx,    {.i = default_border } },
 
     // kill dwm
