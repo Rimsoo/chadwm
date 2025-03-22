@@ -8,6 +8,8 @@ interval=0
 # load colors
 . ~/.config/chadwm/scripts/bar_themes/gruvchad
 
+cvolume="$green"
+
 cpu() {
   cpu_val=$(grep -o "^[^ ]*" /proc/loadavg)
 
@@ -96,13 +98,19 @@ volume() {
     # fi
   done
 
-  printf "^c$green^^b$black^    $bar^c$white^$ebar"
+  printf "^c$cvolume^^b$black^    $bar^c$white^$ebar"
 }
 
 while true; do
 
   [ $interval = 0 ] || [ $(($interval % 3600)) = 0 ] && updates=$(pkg_updates)
   interval=$((interval + 1))
+
+  if [ "$(echo "$updates" | grep -o '')" = "" ]; then
+    cvolume="$red"
+  else
+    cvolume="$green"
+  fi
 
   sleep 1 && xsetroot -name "    $updates  $(volume)  $(mem)  $(eth)  $(weather)  $(clock)"
 done
