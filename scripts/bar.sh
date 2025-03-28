@@ -25,9 +25,9 @@ pkg_updates() {
   updates=$(echo "$updates" | tr -d '[:space:]')
 
   if [ $updates = "0" ]; then
-    printf "^c$green^^b$green^^r0,-50,31,100^^c$black^     ^d^"
+    printf "^c$green^^b$green^^r0,-50,41,100^^c$black^     ^d^"
   else
-    printf "^c$red^^b$red^^r0,-50,31,100^^c$black^     ^d^  ^c$red^$updates"
+    printf "^c$red^^b$red^^r0,-50,41,100^^c$black^     ^d^  ^c$red^$updates"
   fi
 }
 
@@ -48,20 +48,20 @@ mem() {
 
 wlan() {
   case "$(cat /sys/class/net/wl*/operstate 2>/dev/null)" in
-  up) printf "^c$black^^b$blue^ 󰤨 ^d^%s" "^c$blue^Connected" ;;
-  down) printf "^c$black^^b$blue^ 󰤭 ^d^%s" "^c$blue^Disconnected" ;;
+  up) printf "^c$green^^b$green^^r0,-50,41,100^^c$black^  󰤨   ^d^" ;;
+  down) printf "^c$red^^b$red^^r0,-50,41,100^^c$black^  󰤭   ^d^" ;;
   esac
 }
 
 eth() {
-  case "$(cat /sys/class/net/enp4s0/operstate 2>/dev/null)" in
-  up) printf "^c$green^^b$green^^r0,-50,27,100^^c$black^  󰈁  ^d^" ;;
-  down) printf "^c$red^^b$red^^r0,-50,27,100^^c$black^  󰈂  ^d^" ;;
+  case "$(cat /sys/class/net/enp*/operstate 2>/dev/null)" in
+  up) printf "^c$green^^b$green^^r0,-50,41,100^^c$black^  󰈁   ^d^" ;;
+  down) printf "^c$red^^b$red^^r0,-50,41,100^^c$black^  󰈂   ^d^" ;;
   esac
 }
 
 clock() {
-  printf "^c$darkblue^^b$darkblue^^r0,-50,150,100^ ^c$black^ 󱑆 "
+  printf "^c$darkblue^^b$darkblue^^r0,-50,180,100^ ^c$black^ 󱑆 "
   printf "^c$black^^b$darkblue^ $(date '+%d %h %H:%M')"
 }
 
@@ -112,5 +112,5 @@ while true; do
     cvolume="$green"
   fi
 
-  sleep 1 && xsetroot -name "    $updates  $(volume)  $(mem)  $(eth)  $(weather)  $(clock)"
+  sleep 1 && xsetroot -name "    $updates  $(volume)  $(mem) $(eth) $(wlan)  $(weather)  $(clock)"
 done

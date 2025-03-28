@@ -1,2 +1,3 @@
 discord &
 blueman-applet &
+xinput set-prop 12 353 1 &
