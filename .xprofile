@@ -1,3 +1,4 @@
-discord &
-blueman-applet &
-xinput set-prop 12 353 1 &
+# discord &
+# blueman-applet &
+setxkbmap fr &
+picom --backend glx &

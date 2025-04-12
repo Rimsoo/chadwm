@@ -2,8 +2,8 @@
 	path = rofi
 	url = git@github.com:Rimsoo/rofi.git
 [submodule "nvim"]
-	path = nvim
+	path = .config/nvim
 	url = git@github.com:Rimsoo/nvim.config.git
 [submodule "kitty"]
-	path = kitty
+	path = .config/kitty
 	url = git@github.com:Rimsoo/kitty.config.git

@@ -128,6 +128,42 @@
 | `MODKEY\|ControlMask` | `XK_9` | `toggleview` | `{.ui = 1 << 8}` |
 | `MODKEY\|ShiftMask` | `XK_9` | `tag` | `{.ui = 1 << 8}` |
 | `MODKEY\|ControlMask\|ShiftMask` | `XK_9` | `toggletag` | `{.ui = 1 << 8}` |
+| `MODKEY` | `XK_KP_End` | `view` | `{.ui = 1 << 0}` |
+| `MODKEY\|ControlMask` | `XK_KP_End` | `toggleview` | `{.ui = 1 << 0}` |
+| `MODKEY\|ShiftMask` | `XK_KP_End` | `tag` | `{.ui = 1 << 0}` |
+| `MODKEY\|ControlMask\|ShiftMask` | `XK_KP_End` | `toggletag` | `{.ui = 1 << 0}` |
+| `MODKEY` | `XK_KP_Down` | `view` | `{.ui = 1 << 1}` |
+| `MODKEY\|ControlMask` | `XK_KP_Down` | `toggleview` | `{.ui = 1 << 1}` |
+| `MODKEY\|ShiftMask` | `XK_KP_Down` | `tag` | `{.ui = 1 << 1}` |
+| `MODKEY\|ControlMask\|ShiftMask` | `XK_KP_Down` | `toggletag` | `{.ui = 1 << 1}` |
+| `MODKEY` | `XK_KP_Page_Down` | `view` | `{.ui = 1 << 2}` |
+| `MODKEY\|ControlMask` | `XK_KP_Page_Down` | `toggleview` | `{.ui = 1 << 2}` |
+| `MODKEY\|ShiftMask` | `XK_KP_Page_Down` | `tag` | `{.ui = 1 << 2}` |
+| `MODKEY\|ControlMask\|ShiftMask` | `XK_KP_Page_Down` | `toggletag` | `{.ui = 1 << 2}` |
+| `MODKEY` | `XK_KP_Left` | `view` | `{.ui = 1 << 3}` |
+| `MODKEY\|ControlMask` | `XK_KP_Left` | `toggleview` | `{.ui = 1 << 3}` |
+| `MODKEY\|ShiftMask` | `XK_KP_Left` | `tag` | `{.ui = 1 << 3}` |
+| `MODKEY\|ControlMask\|ShiftMask` | `XK_KP_Left` | `toggletag` | `{.ui = 1 << 3}` |
+| `MODKEY` | `XK_KP_Begin` | `view` | `{.ui = 1 << 4}` |
+| `MODKEY\|ControlMask` | `XK_KP_Begin` | `toggleview` | `{.ui = 1 << 4}` |
+| `MODKEY\|ShiftMask` | `XK_KP_Begin` | `tag` | `{.ui = 1 << 4}` |
+| `MODKEY\|ControlMask\|ShiftMask` | `XK_KP_Begin` | `toggletag` | `{.ui = 1 << 4}` |
+| `MODKEY` | `XK_KP_Right` | `view` | `{.ui = 1 << 5}` |
+| `MODKEY\|ControlMask` | `XK_KP_Right` | `toggleview` | `{.ui = 1 << 5}` |
+| `MODKEY\|ShiftMask` | `XK_KP_Right` | `tag` | `{.ui = 1 << 5}` |
+| `MODKEY\|ControlMask\|ShiftMask` | `XK_KP_Right` | `toggletag` | `{.ui = 1 << 5}` |
+| `MODKEY` | `XK_KP_Home` | `view` | `{.ui = 1 << 6}` |
+| `MODKEY\|ControlMask` | `XK_KP_Home` | `toggleview` | `{.ui = 1 << 6}` |
+| `MODKEY\|ShiftMask` | `XK_KP_Home` | `tag` | `{.ui = 1 << 6}` |
+| `MODKEY\|ControlMask\|ShiftMask` | `XK_KP_Home` | `toggletag` | `{.ui = 1 << 6}` |
+| `MODKEY` | `XK_KP_Up` | `view` | `{.ui = 1 << 7}` |
+| `MODKEY\|ControlMask` | `XK_KP_Up` | `toggleview` | `{.ui = 1 << 7}` |
+| `MODKEY\|ShiftMask` | `XK_KP_Up` | `tag` | `{.ui = 1 << 7}` |
+| `MODKEY\|ControlMask\|ShiftMask` | `XK_KP_Up` | `toggletag` | `{.ui = 1 << 7}` |
+| `MODKEY` | `XK_KP_Page_Up` | `view` | `{.ui = 1 << 8}` |
+| `MODKEY\|ControlMask` | `XK_KP_Page_Up` | `toggleview` | `{.ui = 1 << 8}` |
+| `MODKEY\|ShiftMask` | `XK_KP_Page_Up` | `tag` | `{.ui = 1 << 8}` |
+| `MODKEY\|ControlMask\|ShiftMask` | `XK_KP_Page_Up` | `toggletag` | `{.ui = 1 << 8}` |
 
 ## Button Bindings
 

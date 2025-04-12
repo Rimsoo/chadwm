@@ -38,7 +38,9 @@ install: all
 	sed "s/VERSION/${VERSION}/g" < dwm.1 > ${DESTDIR}${MANPREFIX}/man1/dwm.1
 	chmod 644 ${DESTDIR}${MANPREFIX}/man1/dwm.1
 	mkdir -p ${DESTDIR}${PREFIX}/share/xsessions
+	mkdir -p /usr/share/xsessions
 	cp -f chadwm.desktop ${DESTDIR}${PREFIX}/share/xsessions
+	cp -f chadwm.desktop /usr/share/xsessions
 	chmod 644 ${DESTDIR}${PREFIX}/share/xsessions/chadwm.desktop
 
 uninstall:

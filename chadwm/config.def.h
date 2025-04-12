@@ -45,7 +45,7 @@ static const char *status_menu[] =  { "chadwm-rofi-menus", "power", NULL };
 #define ICONSIZE 19   /* icon size */
 #define ICONSPACING 8 /* space between icon and title */
 
-static const char *fonts[]          = { "Iosevka:style:medium:size=12" ,"JetBrainsMono Nerd Font:style:Medium:size=19" };
+static const char *fonts[]          = { "Iosevka:style:medium:size=12" ,"JetBrainsMono Nerd Font:style:Medium:size=19" ,    "Noto Color Emoji:pixelsize=15"};
 
 // theme
 #include "themes/gruvchad.h"
@@ -74,8 +74,8 @@ static char *tags[] = {"", "", "", "", ""};
 
 static const Launcher launchers[] = {
     /* command     name to display */
-  // { eww,          "" },
-    { drofi,         "󰀻" },
+  // { eww,          "󰀻" },
+    { drofi,         "" },
     { firefox,      "󰈹" },
 };
 
@@ -259,6 +259,15 @@ static const Key keys[] = {
     TAGKEYS(                            XK_7,                       6)
     TAGKEYS(                            XK_8,                       7)
     TAGKEYS(                            XK_9,                       8)
+    TAGKEYS(                            XK_KP_End,                  0)
+    TAGKEYS(                            XK_KP_Down,                 1)
+    TAGKEYS(                            XK_KP_Page_Down,            2)
+    TAGKEYS(                            XK_KP_Left,                 3)
+    TAGKEYS(                            XK_KP_Begin,                4)
+    TAGKEYS(                            XK_KP_Right,                5)
+    TAGKEYS(                            XK_KP_Home,                 6)
+    TAGKEYS(                            XK_KP_Up,                   7)
+    TAGKEYS(                            XK_KP_Page_Up,              8)
 };
 
 /* button definitions */

@@ -2,9 +2,8 @@
 
 xrdb merge ~/.Xresources
 xbacklight -set 10 &
-feh --bg-fill ~/Images/dwmwp.png &
+feh --bg-fill ~/Pictures/dwmwp.png &
 xset r rate 200 50 &
-picom &
 
 # Temporary Bypass to use yazi filechooser
 XDG_CURRENT_DESKTOP=gnome /usr/libexec/xdg-desktop-portal -r &

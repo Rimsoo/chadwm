@@ -19,15 +19,15 @@ cpu() {
 
 pkg_updates() {
   #updates=$({ timeout 20 doas xbps-install -un 2>/dev/null || true; } | wc -l) # void
-  # updates=$({ timeout 20 checkupdates 2>/dev/null || true; } | wc -l) # arch
-  updates=$({ timeout 20 aptitude search '~U' 2>/dev/null || true; } | wc -l) # apt (ubuntu, debian etc)
+  updates=$({ timeout 20 checkupdates 2>/dev/null || true; } | wc -l) # arch
+  # updates=$({ timeout 20 aptitude search '~U' 2>/dev/null || true; } | wc -l) # apt (ubuntu, debian etc)
 
   updates=$(echo "$updates" | tr -d '[:space:]')
 
   if [ $updates = "0" ]; then
-    printf "^c$green^^b$green^^r0,-50,41,100^^c$black^     ^d^"
+    printf "^c$green^^b$green^^r0,-50,39,100^^c$black^      ^d^"
   else
-    printf "^c$red^^b$red^^r0,-50,41,100^^c$black^     ^d^  ^c$red^$updates"
+    printf "^c$red^^b$red^^r0,-50,39,100^^c$black^      ^d^   ^c$red^$updates"
   fi
 }
 
@@ -42,32 +42,32 @@ brightness() {
 }
 
 mem() {
-  printf "^c$blue^^b$black^   "
+  printf "^c$blue^^b$black^      "
   printf "^c$blue^$(free -h | awk '/^Mem/ { print $3 }' | sed s/i//g)"
 }
 
 wlan() {
   case "$(cat /sys/class/net/wl*/operstate 2>/dev/null)" in
-  up) printf "^c$green^^b$green^^r0,-50,41,100^^c$black^  󰤨   ^d^" ;;
-  down) printf "^c$red^^b$red^^r0,-50,41,100^^c$black^  󰤭   ^d^" ;;
+  up) printf "^c$green^^b$green^^r0,-50,39,100^^c$black^  󰤨    ^d^" ;;
+  down) printf "^c$red^^b$red^^r0,-50,39,100^^c$black^  󰤭    ^d^" ;;
   esac
 }
 
 eth() {
   case "$(cat /sys/class/net/enp*/operstate 2>/dev/null)" in
-  up) printf "^c$green^^b$green^^r0,-50,41,100^^c$black^  󰈁   ^d^" ;;
-  down) printf "^c$red^^b$red^^r0,-50,41,100^^c$black^  󰈂   ^d^" ;;
+  up) printf "^c$green^^b$green^^r0,-50,39,100^^c$black^  󰈁    ^d^" ;;
+  down) printf "^c$red^^b$red^^r0,-50,39,100^^c$black^  󰈂    ^d^" ;;
   esac
 }
 
 clock() {
-  printf "^c$darkblue^^b$darkblue^^r0,-50,180,100^ ^c$black^ 󱑆 "
+  printf "^c$darkblue^^b$darkblue^^r0,-50,180,100^ ^c$black^ 󱑆  "
   printf "^c$black^^b$darkblue^ $(date '+%d %h %H:%M')"
 }
 
 weather() {
-  get_weather=$(curl -s 'wttr.in/Jumet?format=1')
-  printf "^c$red^$get_weather"
+  weath=$(curl -s 'wttr.in/Bejaia?format=1')
+  printf "^c$red^$weath"
 }
 
 volume() {
@@ -103,7 +103,7 @@ volume() {
 
 while true; do
 
-  [ $interval = 0 ] || [ $(($interval % 3600)) = 0 ] && updates=$(pkg_updates)
+  [ $interval = 0 ] || [ $(($interval % 3600)) = 0 ] && updates=$(pkg_updates) && weath=$(weather)
   interval=$((interval + 1))
 
   if [ "$(echo "$updates" | grep -o '')" = "" ]; then
@@ -112,5 +112,5 @@ while true; do
     cvolume="$green"
   fi
 
-  sleep 1 && xsetroot -name "    $updates  $(volume)  $(mem) $(eth) $(wlan)  $(weather)  $(clock)"
+  sleep 1 && xsetroot -name "    $updates  $(volume)  $(mem) $(eth) $(wlan)  $weath  $(clock)"
 done

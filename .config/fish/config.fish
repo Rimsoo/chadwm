@@ -4,11 +4,12 @@ if status is-interactive
     alias sv "sudo nvim"
     alias dwmconf "nvim ~/.config/chadwm"
     alias venv "source ~/.local/venv/bin/activate.fish"
+    alias fastfetcha "for i in \$(seq 2 26); fastfetch -c \"examples/\$i.jsonc\"; end;"
     # alias ytaudio "yt-dlp -x --audio-format mp3"
 end
 
 function fish_greeting
-    fastfetch -c examples/12.jsonc
+    fastfetch -c examples/17.jsonc
 end
 
 function y
