@@ -25,9 +25,9 @@ pkg_updates() {
   updates=$(echo "$updates" | tr -d '[:space:]')
 
   if [ $updates = "0" ]; then
-    printf "^c$green^^b$green^^r0,-50,39,100^^c$black^      ^d^"
+    printf "^c$green^^b$green^^r0,-50,28,100^^c$black^   ^d^"
   else
-    printf "^c$red^^b$red^^r0,-50,39,100^^c$black^      ^d^   ^c$red^$updates"
+    printf "^c$red^^b$red^^r0,-50,28,100^^c$black^   ^d^   ^c$red^$updates"
   fi
 }
 
@@ -55,8 +55,8 @@ wlan() {
 
 eth() {
   case "$(cat /sys/class/net/enp*/operstate 2>/dev/null)" in
-  up) printf "^c$green^^b$green^^r0,-50,39,100^^c$black^  󰈁    ^d^" ;;
-  down) printf "^c$red^^b$red^^r0,-50,39,100^^c$black^  󰈂    ^d^" ;;
+  up) printf "^c$green^^b$green^^r0,-50,28,100^^c$black^ 󰈁  ^d^" ;;
+  down) printf "^c$red^^b$red^^r0,-50,28,100^^c$black^ 󰈂  ^d^" ;;
   esac
 }
 

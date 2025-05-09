@@ -1,4 +1,4 @@
 # discord &
 # blueman-applet &
-setxkbmap fr &
+# setxkbmap fr &
 picom --backend glx &
